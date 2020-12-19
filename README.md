@@ -6,14 +6,3 @@ Pour installer :
 
 Pour lancer le serveur
 `npm start`
-
-
-Test 
-
-ABCD
-
-Yo
-
-Youssef t fais quoi la
-just it
-1234
