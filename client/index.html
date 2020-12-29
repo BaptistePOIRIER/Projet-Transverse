@@ -13,7 +13,10 @@
     <body>
         <div id="app">
           <main>
-            <router-view></router-view>
+            <router-view
+              @create-account="createAccount"
+              @login="login"
+            ></router-view>
           </main>
         </div>
         <script src="/vue-application.js"></script>

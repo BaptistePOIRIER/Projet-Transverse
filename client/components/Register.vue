@@ -20,6 +20,7 @@ module.exports = {
   methods: {
       createAccount() {
           this.$emit('create-account', this.newAccount)
+          console.log(this.newAccount)
       }
     }
 }

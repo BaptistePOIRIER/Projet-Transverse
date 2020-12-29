@@ -18,5 +18,15 @@ const router = new VueRouter({
 
 var app = new Vue({
   router,
-  el: '#app'
+  el: '#app',
+  methods: {
+    async createAccount (newAccount) {
+      const res = await axios.post('api/register', newAccount)
+      console.log(res.data)
+    },
+    async login (loginInfos) {
+      const res = await axios.post('api/login', loginInfos)
+      console.log(res.data)
+    }
+  }
 })

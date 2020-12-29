@@ -1,6 +1,6 @@
 <template>
   <div class="algos">
-    <div class="container" v-for="algo in algos" :key="algo">
+    <div class="container" v-for="(algo, i) in algos" :key="i">
         <router-link :to="{ path: '/algo', query: { name: algo.url_name }}">
             <div class="algo">
                 <h4>{{algo.name}}</h4>
@@ -18,15 +18,6 @@ module.exports = {
     return {
       algos: [
           {name: "Algo 1", desciption: "Description rapide de l'algo1", url_name: 'algo-1' ,rating: 3, comments: 10},
-          {name: "Algo 2", desciption: "Description rapide de l'algo2"},
-          {name: "Algo 2", desciption: "Description rapide de l'algo2"},
-          {name: "Algo 2", desciption: "Description rapide de l'algo2"},
-          {name: "Algo 2", desciption: "Description rapide de l'algo2"},
-          {name: "Algo 2", desciption: "Description rapide de l'algo2"},
-          {name: "Algo 2", desciption: "Description rapide de l'algo2"},
-          {name: "Algo 2", desciption: "Description rapide de l'algo2"},
-          {name: "Algo 2", desciption: "Description rapide de l'algo2"},
-          {name: "Algo 2", desciption: "Description rapide de l'algo2"},
           {name: "Algo 2", desciption: "Description rapide de l'algo2"}
       ]
     }
