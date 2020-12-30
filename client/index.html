@@ -16,9 +16,11 @@
             <router-view
               :connected="connected"
               :algorithms="algorithms"
+              :algorithm="algorithm"
               @create-account="createAccount"
               @login="login"
               @logout="logout"
+              @get-algorithm="getAlgorithm"
             ></router-view>
           </main>
         </div>

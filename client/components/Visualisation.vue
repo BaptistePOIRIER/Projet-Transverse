@@ -2,7 +2,9 @@
     <div>
         <header-tpl class="header" :connected="connected"></header-tpl>
         <h1>Visualisation</h1>
-        <div class="visu-container">CONTENT</div>
+        <h4>{{algorithm.name}}</h4>
+        <p>{{algorithm.description}}</p>
+        <div class="visu-container">stuff</div>
     </div>
 </template>
 
@@ -14,15 +16,17 @@ module.exports = {
     'header-tpl': HeaderTemplate
   },
   props: {
-    connected: { type: Boolean }
+    connected: { type: Boolean },
+    algorithm: { type: Object }
   },
   data () {
     return {
-      loginInfos: {
-          email: '',
-          password: ''
-      }
+      parameters: {}
     }
+  },
+  mounted () {
+    this.parameters = this.$route.query
+    this.$emit('get-algorithm', this.parameters.id)
   }
 }
 </script>

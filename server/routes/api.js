@@ -115,7 +115,16 @@ router.get('/algorithms', async (req,res) => {
     text: 'SELECT * FROM algorithms'
   })
   res.json(result.rows)
-  console.log(result)
+})
+
+router.get('/algorithm/:algoId', async (req,res) => {
+  const algoId = parseInt(req.params.algoId)
+  const result = await client.query({
+    text: 'SELECT * FROM algorithms WHERE id = $1',
+    values: [algoId]
+  })
+  console.log(result.rows[0])
+  res.json(result.rows[0])
 })
 
 module.exports = router

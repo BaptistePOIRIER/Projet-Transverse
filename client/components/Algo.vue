@@ -1,7 +1,7 @@
 <template>
   <div class="algos">
     <div class="container" v-for="(algo, i) in algorithms" :key="i">
-        <router-link :to="{ path: '/algo', query: { name: algo.url_name }}">
+        <router-link :to="{ path: '/algo', query: { id: algo.id }}">
             <div class="algo">
                 <h4>{{algo.name}}</h4>
                 <p>{{algo.description}}</p>

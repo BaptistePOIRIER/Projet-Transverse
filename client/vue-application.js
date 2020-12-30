@@ -23,6 +23,7 @@ var app = new Vue({
   el: '#app',
   data: {
     algorithms: [],
+    algorithm: {},
     connected: false
   },
   async mounted () {
@@ -50,6 +51,11 @@ var app = new Vue({
       const res = await axios.post('api/logout')
       console.log(res.data)
       router.push('/')
+    },
+    async getAlgorithm (id) {
+      const res = await axios.get('api/algorithm/' + id)
+      this.algorithm = res.data
+      console.log(res.data)
     }
   }
 })
