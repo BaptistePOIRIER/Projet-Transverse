@@ -1,6 +1,6 @@
 <template>
     <div class="header">
-        <img src="./assets/Logo.png">
+        <img src="./assets/logo1.png">
         <h1>L'algorithmique en un clique</h1>
         <nav>
             <router-link to='/contact'>Contact</router-link>
