@@ -15,6 +15,7 @@
           <main>
             <router-view
               :connected="connected"
+              :algorithms="algorithms"
               @create-account="createAccount"
               @login="login"
               @logout="logout"

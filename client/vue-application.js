@@ -22,7 +22,12 @@ var app = new Vue({
   router,
   el: '#app',
   data: {
+    algorithms: [],
     connected: false
+  },
+  async mounted () {
+    const res = await axios.get('api/algorithms')
+    this.algorithms = res.data
   },
   methods: {
     async createAccount (newAccount) {

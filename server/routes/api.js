@@ -108,4 +108,14 @@ router.post('/logout', async (req,res) => {
   res.status(200).json({ message: 'Succesfully disconnected'})
 })
 
+
+router.get('/algorithms', async (req,res) => {
+  // Récupération des algo existants
+  const result = await client.query({
+    text: 'SELECT * FROM algorithms'
+  })
+  res.json(result.rows)
+  console.log(result)
+})
+
 module.exports = router

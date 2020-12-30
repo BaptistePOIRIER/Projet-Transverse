@@ -2,6 +2,7 @@
     <div>
         <header-tpl class="header" :connected="connected"></header-tpl>
         <h1>Visualisation</h1>
+        <div class="visu-container">CONTENT</div>
     </div>
 </template>
 
@@ -15,9 +16,21 @@ module.exports = {
   props: {
     connected: { type: Boolean }
   },
-  async mounted () {
-    parameters = this.$route.query
-    console.log(parameters)
+  data () {
+    return {
+      loginInfos: {
+          email: '',
+          password: ''
+      }
+    }
   }
 }
 </script>
+
+<style scoped>
+.visu-container {
+  height: 60vh;
+  background-color: aquamarine;
+  text-align: center;
+}
+</style>

@@ -1,11 +1,11 @@
 <template>
   <div class="algos">
-    <div class="container" v-for="(algo, i) in algos" :key="i">
+    <div class="container" v-for="(algo, i) in algorithms" :key="i">
         <router-link :to="{ path: '/algo', query: { name: algo.url_name }}">
             <div class="algo">
                 <h4>{{algo.name}}</h4>
-                <p>{{algo.desciption}}</p>
-                <a>Rating: {{algo.rating}}, Comments: {{algo.comments}}</a>
+                <p>{{algo.description}}</p>
+                <a>Rating: {{algo.upvotes}}|{{algo.downvotes}}, Comments: {{algo.comments}}</a>
             </div>
         </router-link>
     </div>
@@ -14,13 +14,8 @@
 
 <script>
 module.exports = {
-  data () {
-    return {
-      algos: [
-          {name: "Algo 1", desciption: "Description rapide de l'algo1", url_name: 'algo-1' ,rating: 3, comments: 10},
-          {name: "Algo 2", desciption: "Description rapide de l'algo2"}
-      ]
-    }
+  props: {
+    algorithms: { type: Array }
   }
 }
 </script>

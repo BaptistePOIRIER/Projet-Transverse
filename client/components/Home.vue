@@ -8,7 +8,7 @@
     <div class="subsection">
       <h2>Nos algorithmes</h2>
     </div>
-    <algo-tpl></algo-tpl>
+    <algo-tpl :algorithms="algorithms"></algo-tpl>
   </div>
 </template>
 
@@ -22,7 +22,8 @@ module.exports = {
     'algo-tpl': AlgoTemplate
   },
   props: {
-    connected: { type: Boolean }
+    connected: { type: Boolean },
+    algorithms: { type: Array }
   }
 }
 </script>
