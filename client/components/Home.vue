@@ -1,6 +1,6 @@
 <template>
   <div>
-    <header-tpl class="header"></header-tpl>
+    <header-tpl class="header" :connected="connected"></header-tpl>
     <div class="subsection">
       <h2>A propos de Step By Step</h2>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, totam accusantium voluptatibus laudantium ipsa reiciendis quae corrupti sapiente! Consectetur, debitis fugit asperiores excepturi consequatur eos! Et, beatae! Nobis, quaerat eius!</p>
@@ -20,6 +20,9 @@ module.exports = {
   components: {
     'header-tpl': HeaderTemplate,
     'algo-tpl': AlgoTemplate
+  },
+  props: {
+    connected: { type: Boolean }
   }
 }
 </script>

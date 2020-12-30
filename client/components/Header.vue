@@ -4,10 +4,28 @@
         <h1>L'algorithmique en un clique</h1>
         <nav>
             <router-link to='/contact'>Contact</router-link>
-            <router-link to='/login'>Connexion</router-link>
+            <router-link v-if="connected" to='/profil'>Profil</router-link>
+            <router-link v-else to='/login'>Connexion</router-link>
+            
         </nav>
     </div>
 </template>
+
+<script>
+module.exports = {
+  props: {
+      connected: Boolean
+  },
+  data () {
+    return {
+      loginInfos: {
+          email: '',
+          password: ''
+      }
+    }
+  }
+}
+</script>
 
 <style scoped>
     * {

@@ -14,6 +14,7 @@ const client = new Client({
 })
 
 client.connect()
+
 /**
  * Cette route permet d'inscrire un utilisateur
  */
@@ -41,7 +42,7 @@ router.post('/register', async (req,res) => {
       text: 'INSERT INTO users(email,password) VALUES ($1,$2)',
       values: [email,hash]
     })
-    res.status(200).json({ done: 'Successfully registered'})
+    res.status(200).json({ message: 'Successfully registered'})
   })
   
   /**
@@ -67,16 +68,44 @@ router.post('/register', async (req,res) => {
     if (await bcrypt.compare(password, user.password)) {
       // Déjà connecté
       if(req.session.userId == user.id) {
-        res.status(401).json({ message: 'Already logged'})
+        res.status(401).json({ message: 'Already connected'})
       }else {
         // Connexion
         req.session.userId = user.id
-        res.status(200).json({ done: 'Successfully logged'})
+        res.status(200).json({ message: 'Successfully connected'})
       }
       return
     }
     // Mauvais mot de passe
     res.status(400).json({ message: 'Wrong password'})
   })
+
+/**
+* Cette route permet de renvoyer l'utilisateur connecté
+*/
+router.get('/me', async (req,res) => {
+  // Connecté ?
+  if (typeof req.session.userId !== 'number') {
+    res.status(401).send({ message: 'No connected users' })
+    return
+  }
+
+  // Récupération des email existants
+  const result = await client.query({
+    text: 'SELECT email,id FROM users'
+  })
+
+  // Récupération de l'utilisateur connecté
+  const user = result.rows.find(a => a.id === req.session.userId)
+  res.status(200).json(user)
+})
+
+/**
+ * Cette route permet de deconnecter l'utilisateur
+ */
+router.post('/logout', async (req,res) => {
+  req.session.destroy()
+  res.status(200).json({ message: 'Succesfully disconnected'})
+})
 
 module.exports = router

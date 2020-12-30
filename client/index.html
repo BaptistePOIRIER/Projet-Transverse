@@ -14,8 +14,10 @@
         <div id="app">
           <main>
             <router-view
+              :connected="connected"
               @create-account="createAccount"
               @login="login"
+              @logout="logout"
             ></router-view>
           </main>
         </div>

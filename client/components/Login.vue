@@ -11,12 +11,20 @@
 
 <script>
 module.exports = {
+  props: {
+    connected: { type: Boolean }
+  },
   data () {
     return {
       loginInfos: {
           email: '',
           password: ''
       }
+    }
+  },
+  mounted () {
+    if (this.connected) {
+      router.push('/')
     }
   },
   methods: {
@@ -28,45 +36,4 @@ module.exports = {
 </script>
 
 <style scoped>
-article {
-  display: flex;
-  background-color: lightgray;
-  padding: 10px;
-  margin: 10px;
-  border: 2px solid black;
-  border-radius: 10px;
-}
-
-button {
-  background-color: rgb(231, 231, 231);
-  transition: .4s;
-}
-
-button:hover {
-  background-color: darkgray;
-  transition: .4s;
-}
-
-.article-img {
-  flex: 1;
-}
-
-.article-img div {
-  width: 100px;
-  height: 100px;
-  background-size: cover;
-}
-
-.article-content {
-  flex: 3;
-}
-
-.article-title {
-  display: flex;
-  justify-content: space-between;
-}
-
-textarea {
-  width: 100%;
-}
 </style>
