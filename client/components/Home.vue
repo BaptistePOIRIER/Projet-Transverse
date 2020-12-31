@@ -64,7 +64,6 @@ module.exports = {
   font-family: 'Poppins', sans-serif;
   
 }
-
 .header {
   width: 100%;
 }
@@ -82,6 +81,7 @@ module.exports = {
             height: 100vh;
             background-size: cover;
             background-position: center;
+            background: linear-gradient(110deg, #fdcd3b 60%, #ffed4b 60%);
         }
         
         
