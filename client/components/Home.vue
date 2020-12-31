@@ -7,20 +7,23 @@
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, totam accusantium voluptatibus laudantium ipsa reiciendis quae corrupti sapiente! Consectetur, debitis fugit asperiores excepturi consequatur eos! Et, beatae! Nobis, quaerat eius!</p>
       </div>
     </section >
+    <section id="sec-3">
+      <div class="subsection">
+        <h2>Qui sommes nous ?</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, totam accusantium voluptatibus laudantium ipsa reiciendis quae corrupti sapiente! Consectetur, debitis fugit asperiores excepturi consequatur eos! Et, beatae! Nobis, quaerat eius!</p>
+      </div>
+    </section >
     <section id="sec-2">
       <div class="subsection">
         <h2>Nos algorithmes</h2>
       </div>
         <algo-tpl :algorithms="algorithms"></algo-tpl>
     </section >
-    <section id="sec-3">
-      <div class="subsection">
-        <h2>Nos algorithmes</h2>
-      </div>
-        <algo-tpl :algorithms="algorithms"></algo-tpl>
-    </section >
     
+   
+     
   </div>
+ 
 
 </template>
 
@@ -55,4 +58,8 @@ module.exports = {
   text-align: center;
   padding: 10% 20% 0% 20%;
 }
+
+
+
+
 </style>
