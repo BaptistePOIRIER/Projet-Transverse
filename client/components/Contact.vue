@@ -1,9 +1,7 @@
 
 <template>
     <div class="container">
-        <div class="button">
-            <a href="Design.html#sec-1" class="btn">Acceuil</a>
-        </div>
+       
         <div class="row">
             <h1>Contacte nous</h1>
         </div>
@@ -51,15 +49,7 @@
         button:focus {
             outline: none;
         }
-        
-        .button {
-            position: absolute;
-            top: 10%;
-            left: 50%;
-            bottom: auto;
-            transform: translate(-50%, 50%);
-            display: inline-block;
-        }
+  
         
         .btn {
             border: 1px solid #fff;
