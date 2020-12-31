@@ -1,7 +1,7 @@
 <template>
     <div class="header">
         <img src="./assets/logo1.png">
-        <h1>L'algorithmique en un Clique</h1>
+        <h1>L'algorithmique en un Clique  &#128433;&#65039; </h1>
         <nav>
             <router-link to='/contact'>Contact</router-link>
             <router-link v-if="connected" to='/profil'>Profil</router-link>
