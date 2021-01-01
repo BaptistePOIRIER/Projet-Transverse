@@ -4,16 +4,22 @@
         <h1>Visualisation</h1>
         <h4>{{algorithm.name}}</h4>
         <p>{{algorithm.description}}</p>
-        <div class="visu-container">stuff</div>
+        <p>Rating: {{algorithm.upvotes - algorithm.downvotes}}</p>
+        <p v-if="connected">+</p>
+        <p v-if="connected">-</p>
+        <algo-1 v-if="parameters.id == 1"></algo-1>
+        <div v-if="parameters.id == 2" class="visu-container">stuff 2</div>
     </div>
 </template>
 
 <script>
 const HeaderTemplate = window.httpVueLoader('./components/Header.vue')
+const Algo1Template = window.httpVueLoader('./components/algo/algo1.vue')
 
 module.exports = {
   components: {
-    'header-tpl': HeaderTemplate
+    'header-tpl': HeaderTemplate,
+    'algo-1': Algo1Template
   },
   props: {
     connected: { type: Boolean },
@@ -29,6 +35,8 @@ module.exports = {
     this.$emit('get-algorithm', this.parameters.id)
   }
 }
+
+
 </script>
 
 <style scoped>
