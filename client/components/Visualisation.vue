@@ -14,7 +14,7 @@
 
 <script>
 const HeaderTemplate = window.httpVueLoader('./components/Header.vue')
-const Algo1Template = window.httpVueLoader('./components/algo/algo1.vue')
+const Algo1Template = window.httpVueLoader('./components/algo1/algo.vue')
 
 module.exports = {
   components: {
