@@ -84,7 +84,7 @@ module.exports = {
   border-radius: 20px;
 }
 .top {
-  background-color: #4ecca3;
+  background-color: #9DAAF2;
   color: black;
   height: 50px;
   display: flex;
@@ -98,6 +98,7 @@ module.exports = {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: #393e46;
 }
 .input {
   width: 80%;
@@ -106,11 +107,12 @@ module.exports = {
   background-color: #eeeeee;
   border-radius: 10px;
   text-align: center;
-  border: 3px solid #4ecca3;
+  border: 3px solid #9DAAF2;
 }
 .error {
-  color: #e5707e;
+  color: #FF6A3D;
   height: 30px;
+  background-color: #393e46;
 }
 .button {
     text-decoration: none;
@@ -134,7 +136,7 @@ module.exports = {
   background-color: #e5707e;
 }
 .bottom {
-  background-color: #4ecca3;
+  background-color: #9DAAF2;
   clip-path: polygon(100% 0, 100% 80%, 0 100%, 0% 20%);
   height: 40px;
   margin-top: 24px;
@@ -146,7 +148,8 @@ module.exports = {
 .register {
   color: #eeeeee;
   text-decoration: none;
-  top: 10px
+  top: 10px;
+  background-color: #393e46;
 }
 .register:hover {
   text-decoration: underline;
