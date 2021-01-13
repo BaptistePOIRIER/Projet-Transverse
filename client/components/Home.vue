@@ -45,7 +45,7 @@
           <label class="form-message">Message</label>
           <textarea class="message" type="text" maxlength="500" v-model="message" required></textarea>
           <p class="character-limit">{{message.length}}/500</p>
-          <button class="button" @click="submitMessage()">Envoyer</button>
+          <button class="button-submit" @click="submitMessage()">Envoyer</button>
         <form>
       </div>
     </section>
@@ -171,7 +171,7 @@ module.exports = {
 .nom {
   border: 3px solid white;
   border-radius: 20px;
-  color: #9DAAF2;
+  color: white;
   height: 40px;
   padding: 10px;
 }
@@ -179,13 +179,13 @@ module.exports = {
 .message {
   border: 3px solid white;
   border-radius: 20px;
-  color: #9DAAF2;
+  color: white;
   height: 150px;
   padding: 10px;
   resize: vertical;
 }
 
-.button {
+.button-submit {
     text-decoration: none;
     color: #eeeeee;
     padding: 6px 60px;
@@ -195,7 +195,7 @@ module.exports = {
     background-color: #232931;
 }
         
-.button:hover {
+.button-submit:hover {
     color: black;
     border-radius: 10px;
     cursor: pointer;
