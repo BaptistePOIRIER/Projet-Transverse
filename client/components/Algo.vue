@@ -1,11 +1,10 @@
 <template>
   <div class="algos">
     <div class="container" v-for="(algo, i) in algorithms" :key="i">
-        <router-link :to="{ path: '/algo', query: { id: algo.id }}">
+        <router-link :to="`/visualise/${algo.url}`">
             <div class="algo">
-                <h4>{{algo.name}}</h4>
-                <p>{{algo.description}}</p>
-                <a>Rating: {{algo.upvotes}}|{{algo.downvotes}}, Comments: {{algo.comments}}</a>
+                <h2 class="name">{{algo.name}}</h2>
+                <p class="description">{{algo.description}}</p>
             </div>
         </router-link>
     </div>
@@ -27,28 +26,35 @@ module.exports = {
 }
 .algos {
     display: flex;
-    flex-flow: row wrap;
+    align-items: center;
     justify-content: space-around;
 }
 
 .algo {
     margin: 10px;
-    padding: 50px;
-    border: 2px solid black;
+    padding: 10px;
+    width: 400px;
+    border: 5px solid white;
     border-radius: 10px;
-    transform: translateY(0px);
     transition: 0.3s ease;
 }
 
 .algo:hover {
-    transform: translateY(-10px);
-    transition: 0.3s ease;
-    background-color: wheat;
+    border: 5px solid #F4DB7D;
     cursor: pointer;
+    transform: scale(1.2);
 }
 
 .container * {
     text-decoration: none;
-    color: black;
+}
+
+.name {
+  margin-bottom: 20px;
+  color: #9DAAF2;
+}
+
+.description {
+  color: white;
 }
 </style>

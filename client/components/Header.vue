@@ -1,14 +1,19 @@
 <template>
     <div class="container">
         <div class="left">
-            <img class="left-content" src="./assets/logo.png">
+            <div class="left-content">
+                <router-link to='/'>
+                    <img class="left-content" src="./assets/logo.png">
+                </router-link>
+            </div>
         </div>
         <div class="mid">
-            <h1 class="mid-content"> L'algorithmique en un Clique  &#128433;&#65039; </h1>
         </div>
         <div class="right">
             <nav class="right-content">
-                <router-link class="button" v-if="this.path != '/contact'" to='/contact'>Contact</router-link>
+                <a v-if="this.path == '/'" class="button" href="#algo">Algorithmes</a>
+                <a v-if="this.path == '/'" class="button" href="#about">À propos</a>
+                <a v-if="this.path == '/'" class="button" href="#contact">Contact</a>
                 <router-link class="button" v-if="this.path != '/profil' && connected" to='/profil'>Profil</router-link>
                 <router-link class="button" v-if="this.path != '/login' && this.path != '/register' && !connected" to='/login'>Connexion</router-link>
             </nav>
@@ -42,10 +47,12 @@ module.exports = {
     z-index: 9001;    
 }
 .container {
-    height: 100px;
+    height: 80px;
     position: sticky;
     top: 0px;
     display: flex;
+    border-bottom: #eeeeee 2px solid;
+    border-top: #eeeeee 2px solid;
 }
 .left {
     width: 50%;
@@ -53,7 +60,7 @@ module.exports = {
     display: flex;
 }
 .left-content {
-    width: 250px;
+    width: 200px;
     margin: auto 0px auto 20px;
 }
 .mid { 

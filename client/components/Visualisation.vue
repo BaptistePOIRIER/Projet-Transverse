@@ -7,8 +7,7 @@
         <p>Rating: {{algorithm.upvotes - algorithm.downvotes}}</p>
         <p v-if="connected">+</p>
         <p v-if="connected">-</p>
-        <algo-1 v-if="parameters.id == 1"></algo-1>
-        <div v-if="parameters.id == 2" class="visu-container">stuff 2</div>
+        <img :src="`./assets/algos/${algorithm.url}.gif`">
     </div>
 </template>
 
@@ -31,8 +30,8 @@ module.exports = {
     }
   },
   mounted () {
-    this.parameters = this.$route.query
-    this.$emit('get-algorithm', this.parameters.id)
+    this.parameters = this.$route.params
+    this.$emit('get-algorithm', this.parameters.algo)
   }
 }
 
@@ -40,6 +39,13 @@ module.exports = {
 </script>
 
 <style scoped>
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  scroll-behavior: smooth;
+}
+
 .visu-container {
   height: 60vh;
   background-color: aquamarine;

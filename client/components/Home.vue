@@ -1,44 +1,48 @@
 <template>
   <div>
-    <header-tpl class="header" :connected="connected"></header-tpl>
-    <section id="sec-1">
+    <header-tpl :connected="connected"></header-tpl>
+    <section id="algo">
       <div class="subsection">
-        <h2>A propos de Step By Step</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, totam accusantium voluptatibus laudantium ipsa reiciendis quae corrupti sapiente! Consectetur, debitis fugit asperiores excepturi consequatur eos! Et, beatae! Nobis, quaerat eius!</p>
-      </div>
-      <div class="scroll down"></div>
-       <a href="#sec-2">
-         <div class="scroll-down"></div>
-        </a>
-    </section >
-    <section id="sec-2">
-      <div class="subsection">
-        <h2>Qui sommes nous ?</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, totam accusantium voluptatibus laudantium ipsa reiciendis quae corrupti sapiente! Consectetur, debitis fugit asperiores excepturi consequatur eos! Et, beatae! Nobis, quaerat eius!</p>
-      </div>
-      <div class="scroll down"></div>
-      <a href="#sec-3">
-        <div class="scroll-down"></div>
-      </a>
-    </section >
-    <section id="sec-3">
-      <div class="subsection">
-        <h2>Nos algorithmes</h2>
+        <h1 class="title">Nos algorithmes</h1>
       </div>
         <algo-tpl :algorithms="algorithms"></algo-tpl>
-
-      <div class="scroll down"></div>
-      <a href="#sec-1">
-        <div class="scroll-down"></div>
-      </a>
-
-    </section >
-    
-   
-     
+    </section>
+    <section id="about">
+      <div class="subsection">
+        <h1 class="title">A propos de Steparstep</h1>
+        <p class="about">Steparstep est une application en ligne consue pour aider l'apprentissage a l'algorithmique à l'aide d'une approche visuelle.</p>
+        <div class="creators-container">
+          <div class="creator">
+            <h3>Baptiste POIRIER</h3>
+            <p>Role: Head dev</p>
+          </div>
+          <div class="creator">
+            <h3>Baptiste POIRIER</h3>
+            <p>Role: Head dev</p>
+          </div>
+          <div class="creator">
+            <h3>Baptiste POIRIER</h3>
+            <p>Role: Head dev</p>
+          </div>
+          <div class="creator">
+            <h3>Baptiste POIRIER</h3>
+            <p>Role: Head dev</p>
+          </div>
+          <div class="creator">
+            <h3>Baptiste POIRIER</h3>
+            <p>Role: Head dev</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="contact">
+      <div class="subsection">
+        <h1 class="title">Contact</h1>
+        <input type="text" required>
+        <textarea type="text" required></textarea>
+      </div>
+    </section>
   </div>
- 
-
 </template>
 
 <script>
@@ -62,107 +66,54 @@ module.exports = {
   margin: 0;
   padding: 0;
   font-family: 'Poppins', sans-serif;
-  
-}
-.header {
-  width: 100%;
+  scroll-behavior: smooth;
 }
 
 .subsection {
   text-align: center;
-  padding: 10% 20% 0% 20%;
+  margin: 20px
 }
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        body {
-            
-            height: 100vh;
-            background-size: cover;
-            background-position: center;
-            background: linear-gradient(110deg, #fdcd3b 60%, #ffed4b 60%);
-        }
-        
-        
-       
-        section {
-            display: inline;
-        }
-        
-        
-        section {
-            min-height: 100vh;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        #sec-1 {
-            position: relative
-        }
-        
-        #sec-2 {
-            
-            position: relative;
-        }
-        
-        #sec-3 {
-            
-            position: relative;
-        }
-        
-        
-        .scroll-down {
-            height: 50px;
-            width: 30px;
-            border: 2px solid rgb(0, 0, 0);
-            position: absolute;
-            left: 50%;
-            bottom: 20px;
-            border-radius: 50px;
-            cursor: pointer;
-        }
-        
-        .scroll-down::before,
-        .scroll-down::after {
-            content: "";
-            position: absolute;
-            top: 20%;
-            left: 50%;
-            height: 10px;
-            width: 10px;
-            transform: translate(-50%, -100%) rotate(45deg);
-            border: 2px solid rgb(0, 0, 0);
-            border-top: transparent;
-            border-left: transparent;
-            animation: scroll-down 1s ease-in-out infinite;
-        }
-        
-        .scroll-down::before {
-            top: 30%;
-            animation-delay: 0.3s;
-        }
-        
-        @keyframes scroll-down {
-            0% {
-                opacity: 0;
-            }
-            30% {
-                opacity: 1;
-            }
-            60% {
-                opacity: 1;
-            }
-            100% {
-                top: 90%;
-                opacity: 0;
-            }
-        }
 
+.title {
+  color: #FF6A3D;
+  font-size: 40px;
+  text-decoration: underline;
+  margin-bottom: 30px;
+}
 
+#algo {
+  padding-top: 100px;
+  min-height: 100vh;
+}
 
+#about {
+  padding-top: 100px;
+  min-height: 100vh;
+  margin: 0px 20% 0px 20%;
+  text-align: center;
+}
 
+.about {
+  font-size: 20px;
+  color: white;
+  margin-bottom: 80px;
+}
 
+#contact {
+  padding-top: 100px;
+  min-height: 100vh;
+}
+
+.creators-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.creator {
+  margin: 3px;
+  padding: 5px;
+  border: 1px solid white;
+  border-radius: 10px;
+}
 </style>

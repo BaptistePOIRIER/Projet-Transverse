@@ -39,7 +39,7 @@ router.post('/register', async (req,res) => {
   
     // Stockage de l'utilisateur
     client.query({
-      text: 'INSERT INTO users(email,password) VALUES ($1,$2)',
+      text: 'INSERT INTO users(name,email,password) VALUES ($1,$2)',
       values: [email,hash]
     })
     res.status(200).json({ message: 'Successfully registered'})
@@ -117,11 +117,13 @@ router.get('/algorithms', async (req,res) => {
   res.json(result.rows)
 })
 
-router.get('/algorithm/:algoId', async (req,res) => {
-  const algoId = parseInt(req.params.algoId)
+router.get('/algorithm/:algoURL', async (req,res) => {
+  const algoURL = req.params.algoURL
+  console.log("HELLOOOOO")
+  console.log(algoURL)
   const result = await client.query({
-    text: 'SELECT * FROM algorithms WHERE id = $1',
-    values: [algoId]
+    text: 'SELECT * FROM algorithms WHERE url = $1',
+    values: [algoURL]
   })
   console.log(result.rows[0])
   res.json(result.rows[0])

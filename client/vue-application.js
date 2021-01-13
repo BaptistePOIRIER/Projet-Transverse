@@ -1,5 +1,4 @@
 const Home = window.httpVueLoader('./components/Home.vue')
-const Contact = window.httpVueLoader('./components/Contact.vue')
 const Register = window.httpVueLoader('./components/Register.vue')
 const Login = window.httpVueLoader('./components/Login.vue')
 const Profil = window.httpVueLoader('./components/Profil.vue')
@@ -7,11 +6,11 @@ const Visualisation = window.httpVueLoader('./components/Visualisation.vue')
 
 const routes = [
   { path: '/', component: Home },
-  { path: '/contact', component: Contact },
   { path: '/register', component: Register},
   { path: '/login', component: Login},
   { path: '/profil', component: Profil},
-  { path: '/algo', component: Visualisation}
+  { path: '/visualise/:algo', component: Visualisation},
+  { path: '/:ref', component: Home }
 ]
 
 const router = new VueRouter({
@@ -24,7 +23,14 @@ var app = new Vue({
   data: {
     algorithms: [],
     algorithm: {},
-    connected: false
+    connected: false,
+    user: {},
+    errors: {
+      register: '',
+      login: '',
+      newDefinition: '',
+      profil: ''
+    }
   },
   async mounted () {
     const res = await axios.get('api/algorithms')
@@ -52,8 +58,9 @@ var app = new Vue({
       console.log(res.data)
       router.push('/')
     },
-    async getAlgorithm (id) {
-      const res = await axios.get('api/algorithm/' + id)
+    async getAlgorithm (algo) {
+      console.log(algo)
+      const res = await axios.get('api/algorithm/' + algo)
       this.algorithm = res.data
       console.log(res.data)
     }
