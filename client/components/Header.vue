@@ -1,13 +1,18 @@
 <template>
-    <div class="header">
-        <img src="./assets/logo1.png">
-        <h1>  L'algorithmique en un Clique  &#128433;&#65039; </h1>
-        <nav>
-            <router-link to='/contact'>Contact</router-link>
-            <router-link v-if="connected" to='/profil'>Profil</router-link>
-            <router-link v-else to='/login'>Connexion</router-link>
-            
-        </nav>
+    <div class="container">
+        <div class="left">
+            <img class="left-content" src="./assets/logo.png">
+        </div>
+        <div class="mid">
+            <h1 class="mid-content"> L'algorithmique en un Clique  &#128433;&#65039; </h1>
+        </div>
+        <div class="right">
+            <nav class="right-content">
+                <router-link class="button" v-if="this.path != '/contact'" to='/contact'>Contact</router-link>
+                <router-link class="button" v-if="this.path != '/profil' && connected" to='/profil'>Profil</router-link>
+                <router-link class="button" v-if="this.path != '/login' && this.path != '/register' && !connected" to='/login'>Connexion</router-link>
+            </nav>
+        </div>
     </div>
 </template>
 
@@ -18,60 +23,66 @@ module.exports = {
   },
   data () {
     return {
-      loginInfos: {
-          email: '',
-          password: ''
-      }
+        path: ""
     }
+  },
+  mounted() {
+      this.path = this.$router.currentRoute.path
+      console.log(this.path)
   }
 }
 </script>
 
 <style scoped>
-    * {
-        margin: 0;
-        padding: 0;
-        font-family: 'Poppins', sans-serif;
-        background-color: white;
-        z-index: 9001;
-    }
-    .header {
-        position: sticky;
-        top: 0px;
-
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        border-top-left-radius:10px;
-        border-top-right-radius:10px;
-        border-bottom-left-radius: 50% 20%;
-        border-bottom-right-radius: 50% 20%;
-  
-    }
-
-    .header img {
-        width: 150px;
-        height: 100px;
-        margin: auto;
-        border-radius: 35%;
-    }
-    .header h1 {
-        margin: auto;
-    }
-    .header nav {
-        margin: auto;
-    }
-
-    nav * {
-            text-decoration: none;
-            color: black;
-            padding: 5px 20px;
-            transition: 0.3s ease;
-            border: 1px solid black
-    }
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #1A2238;
+    z-index: 9001;    
+}
+.container {
+    position: sticky;
+    top: 0px;
+    display: flex;
+}
+.left {
+    width: 50%;
+    flex-shrink: 1;
+    display: flex;
+}
+.left-content {
+    width: 250px;
+    margin: auto 0px auto 20px;
+}
+.mid { 
+    flex-shrink: 0;
+}
+.mid-content {
+    margin: 17px;
+    color: white;
+    font-size: 30px;
+}
+.right {
+    width: 50%;
+    flex-shrink: 1;
+    display: flex;
+    flex-direction: row-reverse;
+}
+.right-content {
+    margin: auto 20px auto 0px;
+}
+.button {
+    text-decoration: none;
+    color: white;
+    padding: 5px 10px;
+    margin: 5px;
+    transition: 0.3s ease;
+    border: solid #1A2238 3px
+}
         
-    nav *:hover {
-            color: white;
-            background-color: black;
-    }
+.button:hover {
+    color: #F4DB7D;
+    border: solid #F4DB7D 3px;
+}
 </style>
