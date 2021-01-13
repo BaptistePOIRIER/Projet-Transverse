@@ -38,8 +38,15 @@
     <section id="contact">
       <div class="subsection">
         <h1 class="title">Contact</h1>
-        <input type="text" required>
-        <textarea type="text" required></textarea>
+        <form class="form">
+          <label class="form-nom">Nom / Email</label>
+          <input class="nom" type="text" v-model="nom" required>
+          <br>
+          <label class="form-message">Message</label>
+          <textarea class="message" type="text" maxlength="500" v-model="message" required></textarea>
+          <p class="character-limit">{{message.length}}/500</p>
+          <button class="button" @click="submitMessage()">Envoyer</button>
+        <form>
       </div>
     </section>
   </div>
@@ -57,6 +64,21 @@ module.exports = {
   props: {
     connected: { type: Boolean },
     algorithms: { type: Array }
+  },
+  data() {
+    return {
+      nom: '',
+      message: ''
+    }
+  },
+  methods: {
+    submitMessage() {
+      const parameters = {
+        name: this.nom,
+        message: this.message
+      }
+    this.$emit('submit-message', parameters)
+    }
   }
 }
 </script>
@@ -103,6 +125,7 @@ module.exports = {
 #contact {
   padding-top: 100px;
   min-height: 100vh;
+  margin: 0px 20% 0px 20%;
 }
 
 .creators-container {
@@ -124,5 +147,58 @@ module.exports = {
 
 .creator-role {
   color: white;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form-nom {
+  color: white;
+}
+
+.form-message {
+  color: white;
+}
+
+.character-limit{
+  color: white;
+  font-size: 14px;
+}
+
+.nom {
+  border: 3px solid white;
+  border-radius: 20px;
+  color: #9DAAF2;
+  height: 40px;
+  padding: 10px;
+}
+
+.message {
+  border: 3px solid white;
+  border-radius: 20px;
+  color: #9DAAF2;
+  height: 150px;
+  padding: 10px;
+  resize: vertical;
+}
+
+.button {
+    text-decoration: none;
+    color: #eeeeee;
+    padding: 6px 60px;
+    margin: 5px;
+    transition: 0.3s ease;
+    border: 1px solid #eeeeee;
+    background-color: #232931;
+}
+        
+.button:hover {
+    color: black;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: #4ecca3;
 }
 </style>

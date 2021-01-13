@@ -129,4 +129,15 @@ router.get('/algorithm/:algoURL', async (req,res) => {
   res.json(result.rows[0])
 })
 
+router.post('/contact', async (req,res) => {
+  const name = req.body.name
+  const message = req.body.message
+
+  await client.query({
+    text: 'INSERT INTO contact(email,message) VALUES ($1,$2)',
+    values: [name,message]
+  })
+
+  res.status(200).json({ message: 'Succesfully sent'})
+})
 module.exports = router

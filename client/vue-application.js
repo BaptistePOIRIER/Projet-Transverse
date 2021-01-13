@@ -63,6 +63,10 @@ var app = new Vue({
       const res = await axios.get('api/algorithm/' + algo)
       this.algorithm = res.data
       console.log(res.data)
+    },
+    async submitMessage(parameters) {
+      console.log(parameters)
+      const res = await axios.post('api/contact', parameters)
     }
   }
 })
