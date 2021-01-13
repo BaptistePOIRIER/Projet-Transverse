@@ -13,24 +13,24 @@
         <p class="about">Steparstep est une application en ligne consue pour aider l'apprentissage a l'algorithmique à l'aide d'une approche visuelle.</p>
         <div class="creators-container">
           <div class="creator">
-            <h3>Baptiste POIRIER</h3>
-            <p>Role: Head dev</p>
+            <h3 class="creator-name">Youssef JENDOUBI</h3>
+            <p class="creator-role">Role: ------</p>
           </div>
           <div class="creator">
-            <h3>Baptiste POIRIER</h3>
-            <p>Role: Head dev</p>
+            <h3 class="creator-name">Duc Hoang NGUYEN</h3>
+            <p class="creator-role">Role: ------</p>
           </div>
           <div class="creator">
-            <h3>Baptiste POIRIER</h3>
-            <p>Role: Head dev</p>
+            <h3 class="creator-name">Baptiste POIRIER</h3>
+            <p class="creator-role">Role: Head dev</p>
           </div>
           <div class="creator">
-            <h3>Baptiste POIRIER</h3>
-            <p>Role: Head dev</p>
+            <h3 class="creator-name">Queran TCHOUME</h3>
+            <p class="creator-role">Role: ------</p>
           </div>
           <div class="creator">
-            <h3>Baptiste POIRIER</h3>
-            <p>Role: Head dev</p>
+            <h3 class="creator-name">Yann YEBOUE</h3>
+            <p class="creator-role">Role: ------</p>
           </div>
         </div>
       </div>
@@ -89,12 +89,13 @@ module.exports = {
 #about {
   padding-top: 100px;
   min-height: 100vh;
-  margin: 0px 20% 0px 20%;
+  margin: 0px 10% 0px 10%;
   text-align: center;
 }
 
 .about {
   font-size: 20px;
+  margin: 0px 10% 0px 10%;
   color: white;
   margin-bottom: 80px;
 }
@@ -115,5 +116,13 @@ module.exports = {
   padding: 5px;
   border: 1px solid white;
   border-radius: 10px;
+}
+
+.creator-name {
+  color: #9DAAF2;
+}
+
+.creator-role {
+  color: white;
 }
 </style>
