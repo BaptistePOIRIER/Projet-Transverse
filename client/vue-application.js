@@ -35,21 +35,31 @@ var app = new Vue({
   async mounted () {
     const res = await axios.get('api/algorithms')
     this.algorithms = res.data
+    this.me()
   },
   methods: {
     async createAccount (newAccount) {
-      const res = await axios.post('api/register', newAccount)
-      console.log(res.data)
+      try {
+        const res = await axios.post('api/register', newAccount)
+        console.log(res.data)
+        router.push('/login')
+      }
+      catch (error) {
+        this.errors.register = error.response.data.message
+        console.log(error.response.data);
+      }
     },
-    async login (loginInfos) {
+    async login (loginInfos) {  
       try {
         const res = await axios.post('api/login', loginInfos)
         console.log(res.data)
-        this.connected = true
+        this.me()
         router.push('/')
       }
-      catch {
+      catch (error) {
+        this.errors.login = error.response.data.message
         this.connected = false
+        console.log(error.response.data);
       }
     },
     async logout() {
@@ -57,6 +67,16 @@ var app = new Vue({
       const res = await axios.post('api/logout')
       console.log(res.data)
       router.push('/')
+    },
+    async me() {
+      try {
+        const res = await axios.get('api/me')
+        this.user = res.data
+        this.connected = true
+      }
+      catch (error) {
+        console.log(error.response.data);
+      }
     },
     async getAlgorithm (algo) {
       console.log(algo)
@@ -67,6 +87,10 @@ var app = new Vue({
     async submitMessage(parameters) {
       console.log(parameters)
       const res = await axios.post('api/contact', parameters)
+    },
+    async editName(parameters) {
+      const res = await axios.post('api/me', parameters)
+      this.me()
     }
   }
 })

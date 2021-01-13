@@ -126,6 +126,38 @@ router.get('/me', async (req,res) => {
 })
 
 /**
+ * Cette route permet de modifier le nom de l'utilisateur
+ */
+router.post('/me', async (req,res) => {
+  const name = req.body.name
+
+  // Connecté ?
+  if (typeof req.session.userId !== 'number') {
+    res.status(401).send({ message: `Vous n'êtes pas connecté` })
+    return
+  }
+
+  // Nom d'utilisateur pas utilisé ?
+  const result_name = await client.query({
+    text: 'SELECT name FROM users'
+  })
+  
+  // Nom déjà utilisé dans la base de donnée ?
+  const user_name = result_name.rows.find(a => a.name === name)
+  if (user_name) {
+    res.status(400).json({ message: 'Nom déjà utilisé'})
+    return
+  }
+
+  // Edit name
+  await client.query({
+    text: `UPDATE users SET name = $1 WHERE id = $2`,
+    values: [name,req.session.userId]
+  })
+  res.status(200).json({ message: 'Nom changé avec succès'})
+})
+
+/**
  * Cette route permet de deconnecter l'utilisateur
  */
 router.post('/logout', async (req,res) => {
