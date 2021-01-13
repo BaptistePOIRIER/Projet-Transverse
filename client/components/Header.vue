@@ -42,6 +42,7 @@ module.exports = {
     z-index: 9001;    
 }
 .container {
+    height: 100px;
     position: sticky;
     top: 0px;
     display: flex;
@@ -59,7 +60,7 @@ module.exports = {
     flex-shrink: 0;
 }
 .mid-content {
-    margin: 17px;
+    margin: 25px;
     color: white;
     font-size: 30px;
 }
