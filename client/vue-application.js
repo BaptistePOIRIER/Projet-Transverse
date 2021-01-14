@@ -91,6 +91,12 @@ var app = new Vue({
     async editName(parameters) {
       const res = await axios.post('api/me', parameters)
       this.me()
+    },
+    async vote (parameters) {
+      const res = await axios.post('api/vote', parameters)
+      console.log(res.data)
+      const res2 = await axios.get('api/algorithm/' + parameters.algo)
+      this.algorithm = res2.data
     }
   }
 })

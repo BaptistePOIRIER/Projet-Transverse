@@ -10,8 +10,8 @@
           <div class="rating">
             <p>{{algorithm.rating}} ★</p>
             <div v-if="connected" class="vote-container">
-              <button v-on:click="vote(algorithm,'upvote')" class="vote up" v-bind:class="{ selected: algorithm.personal_rating == 1 }">+</button>
-              <button v-on:click="vote(algorithm,'downvote')" class="vote down" v-bind:class="{ selected: algorithm.personal_rating == -1 }">-</button>
+              <button @click="vote('upvote')" class="vote up" v-bind:class="{ selected: algorithm.personal_rating == 1 }">+</button>
+              <button @click="vote('downvote')" class="vote down" v-bind:class="{ selected: algorithm.personal_rating == -1 }">-</button>
             </div>
           </div>
         </div>
@@ -41,7 +41,33 @@ module.exports = {
   },
   mounted () {
     this.parameters = this.$route.params
-    this.$emit('get-algorithm', this.parameters.algo)
+    this.getAlgorithm()
+  },
+  methods: {
+    getAlgorithm() {
+      this.$emit('get-algorithm', this.parameters.algo)
+    },
+    vote(vote) {
+      const parameters = {
+        algo: this.algorithm.url,
+        algoId: this.algorithm.id,
+        value: 0
+      }
+      // Click upvote
+      if (vote == 'upvote') {
+        if (this.algorithm.personal_rating != 1) {
+          parameters.value = 1
+        }
+      }
+      // Click downvote
+      if (vote == 'downvote') {
+        if (this.algorithm.personal_rating != -1) {
+          parameters.value = -1
+        }
+      }
+      console.log(parameters)
+      this.$emit('vote', parameters)
+    }
   }
 }
 
@@ -91,7 +117,7 @@ module.exports = {
 
 .description {
   color: white;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .rating {

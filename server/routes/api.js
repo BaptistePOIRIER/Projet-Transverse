@@ -201,4 +201,35 @@ router.post('/contact', async (req,res) => {
 
   res.status(200).json({ message: 'Succesfully sent'})
 })
+
+/**
+ * Cette route permet de voter pour une définition
+ */
+router.post('/vote', async(req,res) => {
+  const algoId = parseInt(req.body.algoId)
+  const value = parseInt(req.body.value)
+  console.log(algoId,value)
+
+  // Connecté ?
+  if (typeof req.session.userId !== 'number') {
+    res.status(401).send({ message: `Vous n'êtes pas connecté` })
+    return
+  }
+
+  // Suppresion de l'ancien vote:
+  await client.query({
+    text: 'DELETE FROM votes WHERE algo_id = $1 AND user_id = $2',
+    values: [algoId,req.session.userId]
+  })
+
+  // Création du nouveau vote:
+  if (value != 0) {
+    await client.query({
+      text: 'INSERT INTO votes(user_id,algo_id,value) VALUES ($1,$2,$3)',
+      values: [req.session.userId,algoId,value]
+    })
+  }
+  res.status(200).send({ message: 'Vote enregistré avec succès'})
+})
+
 module.exports = router
