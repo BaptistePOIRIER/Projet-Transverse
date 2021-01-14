@@ -18,6 +18,17 @@
         <div class="animation">
           <img class="gif" :src="`./assets/algos/${algorithm.url}.gif`">
         </div>
+        <h1 class="title">Commentaires</h1>
+        <div class="comments">
+          <form ref="form" class="new-comment" v-if="connected">
+            <textarea class="comment" v-model="newComment" maxlength="300" required></textarea>
+            <p class="character-limit">{{newComment.length}}/500</p>
+            <button class="button-submit" @click="submitComment()">Envoyer</button>
+          </form>
+          <div class="for-comments" v-for="(comment,i) in comments" :key="i">
+            <h4 class="for-comment">{{comment.comment}}</h4>
+            <a class="for-by">Commenté par <span class="for-author">{{comment.name}}</span></a>
+          </div>
     </div>
 </template>
 
@@ -32,20 +43,26 @@ module.exports = {
   },
   props: {
     connected: { type: Boolean },
-    algorithm: { type: Object }
+    algorithm: { type: Object },
+    comments: { type: Array }
   },
   data () {
     return {
-      parameters: {}
+      parameters: {},
+      newComment: ''
     }
   },
   mounted () {
     this.parameters = this.$route.params
     this.getAlgorithm()
+    this.getComments()
   },
   methods: {
     getAlgorithm() {
       this.$emit('get-algorithm', this.parameters.algo)
+    },
+    getComments() {
+      this.$emit('get-comments', this.parameters.algo)
     },
     vote(vote) {
       const parameters = {
@@ -67,6 +84,19 @@ module.exports = {
       }
       console.log(parameters)
       this.$emit('vote', parameters)
+    },
+    submitComment() {
+      if (!this.$refs.form.checkValidity()) {
+        return
+      }
+      const parameters = {
+        comment: this.newComment,
+        algoId: this.algorithm.id,
+        algo: this.algorithm.url
+      }
+      console.log(parameters)
+      this.$emit('submit-comment', parameters)
+      this.newComment = ''
     }
   }
 }
@@ -195,4 +225,62 @@ module.exports = {
   border: 3px white solid;
   border-radius: 40px;
 }
+
+.comments {
+  text-align: center;
+}
+.character-limit{
+  color: white;
+  font-size: 14px;
+}
+
+.new-comment {
+  margin-top: 40px
+}
+
+.comment {
+  border: 3px solid white;
+  border-radius: 20px;
+  color: white;
+  height: 50px;
+  width: 700px;
+  padding: 10px;
+  resize: vertical;
+}
+
+.button-submit {
+    text-decoration: none;
+    color: #eeeeee;
+    padding: 6px 60px;
+    margin: 5px;
+    transition: 0.3s ease;
+    border: 1px solid #eeeeee;
+    background-color: #232931;
+}
+        
+.button-submit:hover {
+    color: black;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: #4ecca3;
+}
+
+.for-comments {
+  margin: 20px;
+}
+.for-comment {
+  color: white;
+}
+
+.for-by {
+  color: white;
+  font-size: 12px;
+}
+
+.for-author {
+  color: white;
+  font-weight: bolder;
+  font-size: 12px;
+}
+
 </style>

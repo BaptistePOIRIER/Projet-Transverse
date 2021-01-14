@@ -24,13 +24,12 @@ var app = new Vue({
     algorithms: [],
     algorithm: {},
     connected: false,
+    comments: [],
     user: {},
     errors: {
       register: '',
       login: '',
-      newDefinition: '',
-      profil: ''
-    }
+      profil: ''    }
   },
   async mounted () {
     const res = await axios.get('api/algorithms')
@@ -84,6 +83,12 @@ var app = new Vue({
       this.algorithm = res.data
       console.log(res.data)
     },
+    async getComments (algo) {
+      console.log(algo)
+      const res = await axios.get('api/comments/' + algo)
+      this.comments = res.data
+      console.log(res.data)
+    },
     async submitMessage(parameters) {
       console.log(parameters)
       const res = await axios.post('api/contact', parameters)
@@ -97,6 +102,17 @@ var app = new Vue({
       console.log(res.data)
       const res2 = await axios.get('api/algorithm/' + parameters.algo)
       this.algorithm = res2.data
+    },
+    async submitComment (parameters) {
+      try {
+        const res = await axios.post('api/comment', parameters)
+        console.log(res.data)
+        const res2 = await axios.get('api/comments/' + parameters.algo)
+        this.comments = res2.data
+      }
+      catch(error) {
+        console.log(error.response.data);
+      }
     }
   }
 })

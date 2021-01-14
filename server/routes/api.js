@@ -176,7 +176,6 @@ router.get('/algorithms', async (req,res) => {
 
 router.get('/algorithm/:algoURL', async (req,res) => {
   const algoURL = req.params.algoURL
-  console.log("HELLOOOOO")
   console.log(algoURL)
   const result = await client.query({
     text: `SELECT algorithms.id,algorithms.name,algorithms.description,algorithms.url,COALESCE(rating.rating,0) as rating,COALESCE(personal_rating.value, 0) as personal_rating
@@ -188,6 +187,21 @@ router.get('/algorithm/:algoURL', async (req,res) => {
   })
   console.log(result.rows[0])
   res.json(result.rows[0])
+})
+
+router.get('/comments/:algoURL', async (req,res) => {
+  const algoURL = req.params.algoURL
+  console.log(algoURL)
+  const result = await client.query({
+    text: `SELECT comments.id,comments.comment,users.name from comments
+    INNER JOIN algorithms on algorithms.id = comments.algo_id
+    INNER JOIN users on users.id = comments.user_id
+    WHERE algorithms.url = $1
+    ORDER BY comments.id DESC`,
+    values: [algoURL]
+  })
+  console.log(result.rows)
+  res.json(result.rows)
 })
 
 router.post('/contact', async (req,res) => {
@@ -232,4 +246,21 @@ router.post('/vote', async(req,res) => {
   res.status(200).send({ message: 'Vote enregistré avec succès'})
 })
 
+router.post('/comment', async (req,res) => {
+  const comment = req.body.comment
+  const algoId = req.body.algoId
+
+  // Connecté ?
+  if (typeof req.session.userId !== 'number') {
+    res.status(401).send({ message: `Vous n'êtes pas connecté` })
+    return
+  }
+
+  await client.query({
+    text: 'INSERT INTO comments(algo_id,user_id,comment) VALUES ($1,$2,$3)',
+    values: [algoId,req.session.userId,comment]
+  })
+
+  res.status(200).json({ message: 'Succesfully sent'})
+})
 module.exports = router

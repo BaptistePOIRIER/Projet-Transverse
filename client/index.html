@@ -21,13 +21,16 @@
               :algorithm="algorithm"
               :user="user"
               :errors="errors"
+              :comments="comments"
               @create-account="createAccount"
               @login="login"
               @logout="logout"
               @get-algorithm="getAlgorithm"
+              @get-comments="getComments"
               @submit-message="submitMessage"
               @edit-name="editName"
               @vote="vote"
+              @submit-comment="submitComment"
             ></router-view>
           </main>
         </div>
