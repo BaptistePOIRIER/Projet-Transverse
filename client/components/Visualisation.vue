@@ -108,13 +108,65 @@ module.exports = {
   background-color: #1A2238;
 }
 
+.vote-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.vote {
+  border: 1px white solid;
+  height: 25px;
+  width: 25px;
+  margin: 5px;
+  border-radius: 10px;
+  outline: none;
+  color: white;
+}
+
+.vote:not(.selected) {
+  background: none;
+}
+.vote.selected {
+  background-color: rgb(0, 0, 0)  
+}
+.vote:hover:not(.selected) {
+  background-color: rgb(0, 0, 0);
+  cursor: pointer
+}
+.vote:hover.selected {
+  cursor: pointer
+}
+.up.selected {
+  border: 2px #4ecca3 solid;
+  color: #4ecca3;
+}
+.up:hover:not(.selected) {
+  border: 2px #4ecca3 solid;
+  color: #4ecca3;
+}
+.up:hover.selected {
+  border: 2px #4ecca3aa solid;
+  color: #4ecca3aa;
+}
+.down.selected {
+  border: 2px #e5707e solid;
+  color: #e5707e;
+}
+.down:hover:not(.selected) {
+  border: 2px #e5707e solid;
+  color: #e5707e;
+}
+.down:hover.selected {
+  border: 2px #e5707eaa solid;
+  color: #e5707eaa;
+}
 .animation {
   display: flex;
 }
 
 .gif {
   margin: auto;
-  border: 3px #F4DB7D solid;
+  border: 3px white solid;
   border-radius: 40px;
 }
 </style>
