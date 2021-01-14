@@ -179,8 +179,12 @@ router.get('/algorithm/:algoURL', async (req,res) => {
   console.log("HELLOOOOO")
   console.log(algoURL)
   const result = await client.query({
-    text: 'SELECT * FROM algorithms WHERE url = $1',
-    values: [algoURL]
+    text: `SELECT algorithms.id,algorithms.name,algorithms.description,algorithms.url,COALESCE(rating.rating,0) as rating,COALESCE(personal_rating.value, 0) as personal_rating
+    FROM algorithms 
+    LEFT JOIN (SELECT votes.algo_id,SUM(votes.value) as rating FROM votes GROUP BY votes.algo_id) as rating ON rating.algo_id = algorithms.id
+    LEFT JOIN (SELECT votes.algo_id,votes.value FROM votes WHERE votes.user_id = $1) as personal_rating ON personal_rating.algo_id = algorithms.id
+    WHERE algorithms.url = $2`,
+    values: [req.session.userId,algoURL]
   })
   console.log(result.rows[0])
   res.json(result.rows[0])
